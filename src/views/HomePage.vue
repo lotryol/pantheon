@@ -2,28 +2,34 @@
   <ion-page>
     <ion-header :translucent="true">
       <ion-toolbar>
-        <ion-title>Blank</ion-title>
+        <ion-title>Aplicacion</ion-title>
       </ion-toolbar>
     </ion-header>
     
     <ion-content :fullscreen="true">
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title size="large">Blank</ion-title>
+          
         </ion-toolbar>
       </ion-header>
     
       <div id="container">
-        <strong>Ready to create an app?</strong>
-        <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+        <strong>Pantheon</strong>
+        <img src="../theme/images/pantalon.jpg">
+        <p>
+          <ion-button expand="block" @click="Login">iniciar sesion</ion-button>
+          <ion-button expand="block" @click="Register">Registrar</ion-button>
+        </p>
       </div>
     </ion-content>
   </ion-page>
 </template>
 
 <script lang="ts">
+// echo por leonardo
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
 import { defineComponent } from 'vue';
+import router from '@/router';
 
 export default defineComponent({
   name: 'HomePage',
@@ -33,6 +39,13 @@ export default defineComponent({
     IonPage,
     IonTitle,
     IonToolbar
+  },methods:{
+  Login(){
+    router.push('/Login')
+  },
+  Register(){
+    router.push('/Register')
+  }
   }
 });
 </script>
