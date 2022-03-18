@@ -33,6 +33,7 @@
                 <ion-button expand="block" @click="Register">Registrar</ion-button>
                 <ion-button expand="block" @click="home">Pantalla Principal</ion-button>
               </ion-card-content>
+              {{passIncorrect}}
             </ion-card>
           </ion-col>
         </ion-row>
@@ -44,8 +45,11 @@
 <script lang="ts">
 import router from '@/router';
 import "@/dbFirebase/initFirebase";
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+import app from "../dbFirebase/initFirebase";
+import { getFirestore,doc, getDoc} from "firebase/firestore/lite";
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonLabel, IonCardTitle, IonCardHeader, IonItem, IonList, IonButton, IonCardContent, IonCard, IonCol, IonRow, IonGrid, IonInput } from '@ionic/vue';
 import { defineComponent } from 'vue';
+import sha256 from 'js-sha256';
 export default defineComponent({
   name: 'LoginLinea',
   components: {
@@ -53,27 +57,58 @@ export default defineComponent({
     IonHeader,
     IonPage,
     IonTitle,
-    IonToolbar
+    IonToolbar,
+    IonLabel,
+    IonCardTitle,
+    IonCardHeader,
+    IonItem,
+    IonList,
+    IonButton,
+    IonCardContent,
+    IonCard,
+    IonCol,
+    IonRow,
+    IonGrid,
+    IonInput
   },
   data() {
     return {
       usuario: '',
-      password: ''
+      password: '',
+      passIncorrect: ''
     }
   },
-  login(){
-    console.log(this.usuario)
-    console.log(this.password)
-  },methods:{
+  methods:{
     Register(){
         router.push('/Register')
   },
   home(){
     router.push('/Home')
-  }
-  }
+  },
+  async login(){
+    const db = getFirestore(app);
+    const docRef = doc(db, "usuarios", this.usuario);
+  const docSnap = await getDoc(docRef);
+
   
-});
+  if (docSnap.exists()) {
+    const contrasena = docSnap.data();
+    //contrasena.password
+    const comparar= sha256.sha256(this.password)
+    if(comparar==contrasena.password){
+      router.push('/Pantalla')
+    }else{
+      this.passIncorrect='Datos erroneos'
+    }
+
+    //console.log("Document data:", docSnap.data());
+  } else {
+  // doc.data() will be undefined in this case
+    this.passIncorrect='Datos erroneos'
+    console.log("No such document!");
+  }
+  },
+}});
 </script>
 <style scoped>
 </style>

@@ -45,7 +45,7 @@
   </ion-page>
 </template>
 <script lang="typescript">
-import {IonContent, IonHeader, IonPage, IonToolbar, IonTitle, IonInput} from '@ionic/vue';
+import {IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonLabel, IonCardTitle, IonCardHeader, IonItem, IonList, IonButton, IonCardContent, IonCard, IonCol, IonRow, IonGrid, IonInput} from '@ionic/vue';
 import { defineComponent } from "vue";
 // import frs from "@firebase/firestore";
 import { getFirestore, collection, getDocs, doc, setDoc } from 'firebase/firestore/lite';
@@ -56,12 +56,23 @@ import sha256 from 'js-sha256';
 export default defineComponent({
     name: 'RegisterLinea',
     components:{
-        IonContent,
-        IonHeader,
-        IonPage,
-        IonTitle,
-        IonToolbar,
-        IonInput
+      IonContent,
+      IonHeader,
+      IonPage,
+      IonTitle,
+      IonToolbar,
+      IonLabel,
+      IonCardTitle,
+      IonCardHeader,
+      IonItem,
+      IonList,
+      IonButton,
+      IonCardContent,
+      IonCard,
+      IonCol,
+      IonRow,
+      IonGrid,
+      IonInput
     },
     data(){
         return{
