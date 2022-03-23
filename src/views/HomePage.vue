@@ -27,7 +27,7 @@
 
 <script lang="ts">
 // echo por leonardo
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonLabel, IonCardTitle, IonCardHeader, IonItem, IonList, IonButton, IonCardContent, IonCard, IonCol, IonRow, IonGrid } from '@ionic/vue';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
 import { defineComponent } from 'vue';
 import router from '@/router';
 
@@ -38,18 +38,7 @@ export default defineComponent({
     IonHeader,
     IonPage,
     IonTitle,
-    IonToolbar,
-    IonLabel,
-    IonCardTitle,
-    IonCardHeader,
-    IonItem,
-    IonList,
-    IonButton,
-    IonCardContent,
-    IonCard,
-    IonCol,
-    IonRow,
-    IonGrid
+    IonToolbar
   },methods:{
   Login(){
     router.push('/Login')

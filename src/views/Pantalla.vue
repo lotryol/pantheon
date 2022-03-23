@@ -71,7 +71,8 @@ export default defineComponent({
   },methods:{
   home(){
     router.push('/Home')
-  }
+  },
+  
   }
   
 });
