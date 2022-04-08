@@ -39,6 +39,7 @@ import router from '@/router';
 import "@/dbFirebase/initFirebase";
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonLabel, IonCardTitle, IonCardHeader, IonItem, IonList, IonButton, IonCardContent, IonCard, IonCol, IonRow, IonGrid } from '@ionic/vue';
 import { defineComponent } from 'vue';
+import axios from "axios";
 export default defineComponent({
   name: 'LoginLinea',
   components: {
@@ -71,8 +72,8 @@ export default defineComponent({
   },methods:{
   home(){
     router.push('/Home')
-  },
-  
+  }
+
   }
   
 });

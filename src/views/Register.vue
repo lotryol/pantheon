@@ -46,8 +46,6 @@
                 <ion-button expand="block" @click="home"
                   >Pantalla Principal</ion-button
                 >
-                {{ err }}
-                {{ eme }}
               </ion-card-content>
             </ion-card>
           </ion-col>
@@ -75,6 +73,7 @@ import {
   IonRow,
   IonGrid,
   IonInput,
+  alertController,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 // import frs from "@firebase/firestore";
@@ -127,7 +126,6 @@ export default defineComponent({
       const docRef = doc(db, "usuarios", this.usuario);
       const docSnap = await getDoc(docRef)
           if (this.usuario.length > 0 && this.password.length > 0 && this.email.length > 0) {
-            this.eme = "soy el tercer if";
 
             setDoc(doc(db, "usuarios", this.usuario), {
               email: this.email,
@@ -137,7 +135,7 @@ export default defineComponent({
             this.password = "";
             this.email = "";
 
-            router.push("/login");
+             router.push("/login");
       }
     },
     login() {
@@ -146,19 +144,34 @@ export default defineComponent({
     home() {
       router.push("/Home");
     },
+    async errorLogin() {
+      const alert = await alertController.create({
+        header: "Error",
+        message: "Usuario o email ya registrados",
+        buttons: ["OK"],
+        cssClass: "my-custom-class",
+      });
+      await alert.present();
+    },
     async comparador(){
       const db =getFirestore(app);
       const querySnapshot = await getDocs(collection(db, "usuarios"))
+        var i = 0;
 
-      querySnapshot.forEach(doc => {
-        if(doc.data().email==this.email){
-          console.log("este email ya esta registrado")
-        }else if(doc.id==this.usuario){
-          console.log("este usuario ya esta registrado")
-        }else{
-          this.registrar()
+      querySnapshot.forEach((doc) => {
+        if(doc.id==this.usuario){
+          i++;
+        }if(doc.data().email==this.email){
+          i++;
         }
       })
+        if(i==0){
+          this.registrar()
+          console.log("registro exitoso")
+        }else{
+          this.errorLogin();
+        }
+
     }
   },
 });

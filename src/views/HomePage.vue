@@ -19,6 +19,7 @@
         <p>
           <ion-button expand="block" @click="Login">iniciar sesion</ion-button>
           <ion-button expand="block" @click="Register">Registrar</ion-button>
+          <ion-button expand="block" @click="rest">WEB</ion-button>
         </p>
       </div>
     </ion-content>
@@ -45,6 +46,9 @@ export default defineComponent({
   },
   Register(){
     router.push('/Register')
+  },
+  rest(){
+    router.push('/Rest')
   }
   }
 });

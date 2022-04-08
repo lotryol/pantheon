@@ -4,7 +4,7 @@ import HomePage from '../views/HomePage.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import Pantalla from '../views/Pantalla.vue'
-
+import RestApi from '../Api/Rest.vue'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -29,6 +29,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/pantalla',
     name: 'PANTALLA',
     component: Pantalla
+  },
+  {
+    path: '/rest',
+    name: 'REST',
+    component: RestApi
   }
 ]
 
