@@ -16,13 +16,12 @@
       <div id="container">
         <strong>Pantheon</strong>
         <p>Hola, bienvenido a la Aplicacion</p>
-        <!-- <img src="../theme/images/pantalon.jpg"> -->
         
         <p>
           <ion-button expand="block" @click="Login">iniciar sesion</ion-button>
           <ion-button expand="block" @click="Register">Registrar</ion-button>
           <ion-button expand="block" @click="rest">WEB</ion-button>
-          <ion-button expand="block" @click="ubicacion">Ubicacion</ion-button>
+          <ion-button expand="block" @click="ubicacionH">Ubicacion</ion-button>
           {{longitud}}
           {{latitud}}
         </p>
@@ -35,6 +34,7 @@
 // echo por leonardo
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
 import { defineComponent } from 'vue';
+import {ubicacionPrueba} from '../methods/methods';
 import router from '@/router';
 
 export default defineComponent({
@@ -59,19 +59,13 @@ export default defineComponent({
     router.push('/Register')
   },
   rest(){
-    router.push('/Rest')
+    router.push('/rest')
   },
-  ubicacion(){
-    if (navigator.geolocation) {
-         navigator.geolocation.getCurrentPosition((position)=>{
-      this.latitud = position.coords.latitude;
-      this.longitud = position.coords.longitude;
-         });
-    } else {
-        console.log("Geolocation is not supported by this browser.");
-    }
+  ubicacionH(){
+    const ubic= new ubicacionPrueba();
+    ubic.ubla()
 
- 
+    
   }
   }
 });
